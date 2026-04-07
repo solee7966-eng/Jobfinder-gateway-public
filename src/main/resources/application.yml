@@ -1,10 +1,12 @@
-# MSA 버전 
 server:
   port: 8000
 
 spring:
   application:
     name: msa_gatewayservice
+
+  profiles:
+    active: local
 
   cloud:
     gateway:
@@ -26,14 +28,6 @@ spring:
           filters:
             - RewritePath=/board-service/(?<segment>.*), /${segment}
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://discovery-service:8761/eureka/
-
 logging:
   level:
-    __com.netflix____.discovery__: WARN
-    
+    com.netflix.discovery: WARN
